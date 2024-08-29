@@ -423,54 +423,54 @@
 //!28/08/24
 //* how to store the data in json file and access that in App.jsx or in any Component 
 
-import React, { useState } from 'react'
-import productsData from './data.json'
+// import React, { useState } from 'react'
+// import productsData from './data.json'
 
 
-const App = () => {
-  // lets create the state and in that state pass products data 
-  let [data , setData ] = useState(productsData);
+// const App = () => {
+//   // lets create the state and in that state pass products data 
+//   let [data , setData ] = useState(productsData);
 
-  console.log(data);
+//   console.log(data);
   
-  return (
-    <div className='container'>
-      <article>
-        <table>
-          <thead>
-            <tr>
-              <th>Id : </th>
-              <th>Image : </th>
-              <th>title : </th>
-              <th>description : </th>
-              <th>price : </th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((currentProduct , index) => {
-              // let destructure the all the details 
-              let {id , title , price , description , image} = currentProduct;
-              return (
-                    <tr key={index + 1}>
-                    <td>{id}</td>
-                    <td>
-                      <img src={image} alt="" />
-                    </td>
-                    <td>{title}</td>
-                    <td>{description}</td>
-                    <td>{price}</td>
-                  </tr>
-              )
+//   return (
+//     <div className='container'>
+//       <article>
+//         <table>
+//           <thead>
+//             <tr>
+//               <th>Id : </th>
+//               <th>Image : </th>
+//               <th>title : </th>
+//               <th>description : </th>
+//               <th>price : </th>
+//             </tr>
+//           </thead>
+//           <tbody>
+//             {data.map((currentProduct , index) => {
+//               // let destructure the all the details 
+//               let {id , title , price , description , image} = currentProduct;
+//               return (
+//                     <tr key={index + 1}>
+//                     <td>{id}</td>
+//                     <td>
+//                       <img src={image} alt="" />
+//                     </td>
+//                     <td>{title}</td>
+//                     <td>{description}</td>
+//                     <td>{price}</td>
+//                   </tr>
+//               )
 
-            })}
-          </tbody>
-        </table>
-      </article>
-    </div>
-  )
-}
+//             })}
+//           </tbody>
+//         </table>
+//       </article>
+//     </div>
+//   )
+// }
 
-export default App
+// export default App
 
 
 
@@ -522,3 +522,115 @@ export default App
 
 
 
+
+
+//!29/08/24   (very imp datatypes for the props how to set)
+
+//! npm i prop-types (install this libraray)
+//^ How to set the data types for the props using the prop-types using the npm package
+// * We have to set the data types for the props in the child component (means where we are receiving that props in that child we have to set the )
+
+// import React from 'react'
+// import Child from './Child';
+
+// const App = () => {
+//   return (
+//     <div>
+//       <Child userName={"Manoj"}  id={200}  skills={["js" , "react"]}/>
+
+//       {/* while second child re-rendering I am intentially not passing userName to see the error 
+//       Warning: Failed prop type: The prop `userName` is marked as required in `Child`, but its value is `undefined`.*/}
+//       <Child   id={200}  skills={["js" , "react"]}/>  
+//     </div>
+//   )
+// }
+
+// export default App
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// !How list and keys work in Fragment 
+//* key is just used to pass the unique identity to the list
+
+
+
+// import React, { useState } from 'react'
+
+// const App = () => {
+//     //!here I will take the one state 
+//     let [skills] = useState([
+//       "java",
+//       "javascript",
+//       "sql",
+//       "Express",
+//       "PHP",
+//     ])
+//   return (
+//     <div>
+//       <ol>
+//         {
+//           skills.map((currentSkill , index) => {
+//             // I will return li using the fragement 
+//             return (
+//               // !here for the empty fragement we canoot set the key to identify it uniqellly 
+//               // *hence I have to use the React.Fragment
+
+//               <React.Fragment key={index + 1}>
+
+//                 <li>{currentSkill}</li>
+
+//               </React.Fragment>
+//             )
+//           })
+//         }
+//       </ol>
+//     </div>
+//   )
+// }
+
+// export default App
+
+
+
+
+
+
+// !props.children (how to pass the children to the child from the parent component)
+
+import React from 'react'
+import Child from './Child'
+
+const App = () => {
+  return (
+    <div>
+      <Child>
+
+          <h1>userName : Manoj</h1>
+          <h2>is : 784</h2>
+          <h3>skills : core-java , javascript , react</h3>
+
+      </Child>
+      
+    </div>
+  )
+}
+
+export default App
+
+// learned about the how to set the datatypes for the props in child component using the prop-types library and using the componentName.propTypes and also learned about the list and keys how it works in the React.fragement and also learned props.children (how to pass the children to the child from the parent component)

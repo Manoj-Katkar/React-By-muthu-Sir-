@@ -167,22 +167,22 @@
  */
 
 
-import React from 'react'
+// import React from 'react'
 
-const Child = (props) => {
-  // lets destructure the props 
-  let {userName , id , company} = props;
-  return (
-    <div>
-           {/*here using the or operator  */}
-          <h1>userName : {userName || "NAd"}</h1>
-          <h2>id : {id || "NAd"}</h2>
-          <h3>company : {company || "NAd"}</h3>
-    </div>
-  )
-}
+// const Child = (props) => {
+//   // lets destructure the props 
+//   let {userName , id , company} = props;
+//   return (
+//     <div>
+//            {/*here using the or operator  */}
+//           <h1>userName : {userName || "NAd"}</h1>
+//           <h2>id : {id || "NAd"}</h2>
+//           <h3>company : {company || "NAd"}</h3>
+//     </div>
+//   )
+// }
 
-export default Child
+// export default Child
 
 
 // using function name 
@@ -192,3 +192,76 @@ export default Child
 //   id : "NADD",
 //   company : "NADD"
 // }
+
+
+
+
+
+
+//!29/08/24   (very imp datatypes for the props how to set)
+
+
+// import React from 'react'
+// import PropTypesObject from "prop-types"
+
+// const Child = ({userName , id , skills}) => {
+//   return (
+//     <div>
+//       <h1>Child Component</h1>
+//       <h2>userName : {userName}</h2>
+//       <h3>id : {id}</h3>
+
+//       <ul>
+//         skills : {
+//           skills.map((value , index) => {
+//             return (
+//               <li key={index + 1}>{value}</li>
+//             )
+//           })
+//         }
+//       </ul>
+//     </div>
+//   )
+// }
+
+// export default Child
+
+// !then using the function name I can set the data type for the props 
+//^ isRequired : we use it because it should be compulsory pass it from the parent component
+
+// Child.propTypes = {  //propTypes it is the property for the child 
+//   userName : PropTypesObject.string.isRequired,
+//   id : PropTypesObject.number.isRequired,
+//   skills : PropTypesObject.array
+// }
+
+
+
+
+
+
+
+// !props.children (how to pass the children to the child from the parent component)
+
+
+// ^here we will get the all the childrens from the parent with props.children
+// ^ All the childrens will get in the props so we have to access it using the props.children or we can destructure it directlly as the children and then access it 
+// ^or I can destructure it to children
+
+import React from 'react'
+
+const Child = (props) => {
+
+  console.log(props);
+  
+  return (
+    <div>{props.children}</div>
+  )
+}
+
+export default Child
+
+
+
+
+
