@@ -185,7 +185,7 @@
 // export default Child
 
 
-// using function name 
+//*using function name 
 
 // Child.defaultProps = {
 //   userName : "NADD",
@@ -229,7 +229,7 @@
 // !then using the function name I can set the data type for the props 
 //^ isRequired : we use it because it should be compulsory pass it from the parent component
 
-// Child.propTypes = {  //propTypes it is the property for the child 
+// Child.propTypes = {  //*propTypes it is the property for the child 
 //   userName : PropTypesObject.string.isRequired,
 //   id : PropTypesObject.number.isRequired,
 //   skills : PropTypesObject.array
@@ -252,7 +252,7 @@ import React from 'react'
 
 const Child = (props) => {
 
-  console.log(props);
+  console.log(props);  //*it will be there in the form of object of array having total childrens that are got passed from the parent 
   
   return (
     <div>{props.children}</div>

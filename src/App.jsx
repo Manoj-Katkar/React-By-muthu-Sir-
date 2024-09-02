@@ -369,25 +369,14 @@
 //           userName = "Manoj"
 //           id = {123}
 //           skills = {["java" , "javascript" , "html" , "css" , "react"]}
-        
+
 //         />
 //       </div>
 //     );
 //   }
 // }
 
-
-
-
-
-
-
-
-
 //^How to transfer the props from the class based component
-
-
-
 
 // import React from 'react'
 // import Child from './Child'
@@ -407,7 +396,7 @@
 //           userName = "Manoj"
 //           id = {123}
 //           skills = {["java" , "javascript" , "html" , "css" , "react"]}
-        
+
 //         />
 //     </div>
 //   )
@@ -415,24 +404,18 @@
 
 // export default App
 
-
-
-
-
-
 //!28/08/24
-//* how to store the data in json file and access that in App.jsx or in any Component 
+//* how to store the data in json file and access that in App.jsx or in any Component
 
 // import React, { useState } from 'react'
 // import productsData from './data.json'
 
-
 // const App = () => {
-//   // lets create the state and in that state pass products data 
+//   // lets create the state and in that state pass products data
 //   let [data , setData ] = useState(productsData);
 
 //   console.log(data);
-  
+
 //   return (
 //     <div className='container'>
 //       <article>
@@ -448,7 +431,7 @@
 //           </thead>
 //           <tbody>
 //             {data.map((currentProduct , index) => {
-//               // let destructure the all the details 
+//               // let destructure the all the details
 //               let {id , title , price , description , image} = currentProduct;
 //               return (
 //                     <tr key={index + 1}>
@@ -472,13 +455,7 @@
 
 // export default App
 
-
-
-
-
-
-// ?how to transfer the function , json , and state value using props 
-
+// ?how to transfer the function , json , and state value using props
 
 // import React, { useState } from 'react'
 // import productsData from './data.json'
@@ -488,7 +465,7 @@
 
 //   let [count , setCount] = useState(0);
 
-//   // lets take more the one more function that we will pass as the props 
+//   // lets take more the one more function that we will pass as the props
 //   let demo = () => {
 //     return "demo function";
 //   }
@@ -501,10 +478,7 @@
 
 // export default App
 
-
-
-
-// !How to set the default props in class based components 
+// !How to set the default props in class based components
 // import React, { Component } from 'react'
 // import Child from './Child';
 
@@ -520,10 +494,6 @@
 //   }
 // }
 
-
-
-
-
 //!29/08/24   (very imp datatypes for the props how to set)
 
 //! npm i prop-types (install this libraray)
@@ -538,42 +508,22 @@
 //     <div>
 //       <Child userName={"Manoj"}  id={200}  skills={["js" , "react"]}/>
 
-//       {/* while second child re-rendering I am intentially not passing userName to see the error 
+//       {/* while second child re-rendering I am intentially not passing userName to see the error
 //       Warning: Failed prop type: The prop `userName` is marked as required in `Child`, but its value is `undefined`.*/}
-//       <Child   id={200}  skills={["js" , "react"]}/>  
+//       <Child   id={200}  skills={["js" , "react"]}/>
 //     </div>
 //   )
 // }
 
 // export default App
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// !How list and keys work in Fragment 
+// !How list and keys work in Fragment
 //* key is just used to pass the unique identity to the list
-
-
 
 // import React, { useState } from 'react'
 
 // const App = () => {
-//     //!here I will take the one state 
+//     //!here I will take the one state
 //     let [skills] = useState([
 //       "java",
 //       "javascript",
@@ -586,9 +536,9 @@
 //       <ol>
 //         {
 //           skills.map((currentSkill , index) => {
-//             // I will return li using the fragement 
+//             // I will return li using the fragement
 //             return (
-//               // !here for the empty fragement we canoot set the key to identify it uniqellly 
+//               // !here for the empty fragement we canoot set the key to identify it uniqellly
 //               // *hence I have to use the React.Fragment
 
 //               <React.Fragment key={index + 1}>
@@ -606,31 +556,335 @@
 
 // export default App
 
-
-
-
-
-
 // !props.children (how to pass the children to the child from the parent component)
 
-import React from 'react'
-import Child from './Child'
+// import React from 'react'
+// import Child from './Child'
+
+// const App = () => {
+//   return (
+//     <div>
+//       <Child>
+
+//           <h1>userName : Manoj</h1>
+//           <h2>is : 784</h2>
+//           <h3>skills : core-java , javascript , react</h3>
+
+//       </Child>
+
+//     </div>
+//   )
+// }
+
+// export default App
+
+// learned about the how to set the datatypes for the props in child component using the prop-types library and using the componentName.propTypes and also learned about the list and keys how it works in the React.fragement and also learned props.children (how to pass the children to the child from the parent component)
+
+//& 30-08-24
+//! How to create the ref in CBC:
+
+// import React, { Component } from 'react'
+
+// export default class App extends Component {
+//   constructor(){
+//     super();
+//     this.divRef=React.createRef();
+//   }
+//   handleClick=(e)=>{
+//     this.divRef.current.style.background="hotpink";
+//   };
+//   render() {
+//     return (
+//       <div
+//       ref={this.divRef}
+//       className="container"
+//       onClick={this.handleClick}>
+//       </div>
+//     )
+//   }
+// }
+
+//! How to create the ref in FBC:
+
+// import React, { useRef } from 'react';
+
+// const App=()=> {
+//   let divRef=useRef();
+//   let handleClick=(e)=>{
+//     divRef.current.style.background="goldenrod";
+//   }
+//   return(
+//     <div className="container" ref={divRef}
+//     onClick={handleClick}>
+//     </div>
+//   )
+// };
+
+// export default App;
+
+//! how to handle the media player using ref:
+
+// import React, { useRef, useState } from 'react'
+// import video from "./videos/Shivba Raja _ Sher Shivraj _ Digpal Lanjekar _ Avadhoot Gandhi _ Devdutta Manisha Baji.mp4";
+
+// const App = () => {
+//   let videoRef=useRef();
+//   let[play,setPlay]=useState(false);
+//   let[text,setText]=useState("");
+//   let handleClick=(e)=>{
+//     setPlay(!play);
+//     if(play){
+//       videoRef.current.play();
+//       setText("playing");
+//     }
+//     else{
+//       videoRef.current.pause();
+//       setText("")
+//     }
+//   }
+//   return (
+//     <div className="container">
+//       <h1>{text}</h1>
+//       <video src={video}
+//       onClick={handleClick}
+//       height={"700px"}
+//       width={"600px"}
+//       ref={videoRef}
+//       >
+//       </video>
+//     </div>
+//   )
+// }
+
+// export default App;
+
+// !02/09/24
+// ^how to do the conditional rendering in react :
+// !there are total 4 ways
+// ^1)using if-else
+// ^2)using switch
+// ^3)using ternary operator
+// ^4)using logical AND (&&)
+
+// !using if-else
+
+// import React, { useState } from 'react'
+
+// const App = () => {
+
+//   let [isLogIn , setIsLogedIn] = useState(true);
+
+//   if(isLogIn){
+//     // means the user is successfully logedIn then show the userName with logout button
+
+//     return (
+//       <div className='container'>
+
+//         <article>
+//           <aside className='a1'>Heading</aside>
+//           <aside className='a1'>
+//             <ul>
+//               <li>Home</li>
+//               <li>Products</li>
+//               <li>Blogs</li>
+//               <li>Hi Manoj</li>
+//               <li>
+//                 <button type='button'>LogOut</button>
+//               </li>
+//             </ul>
+//           </aside>
+
+//         </article>
+//       </div>
+//     )
+//   }
+//   else{
+//     return(
+//       <div className='container'>
+
+//         <article>
+//           <aside className='a1'>Heading</aside>
+//           <aside className='a1'>
+//             <ul>
+//               <li>Home</li>
+//               <li>Products</li>
+//               <li>Blogs</li>
+//               <li>LogIn</li>
+//               <li>SignUp</li>
+//             </ul>
+//           </aside>
+
+//         </article>
+//       </div>
+//     )
+//   }
+// }
+
+// export default App
+
+// !using switch case
+
+// import React, { useState } from "react";
+
+// const App = () => {
+//   let [isLogIn, setIsLogedIn] = useState(true);
+
+//   // !Note we can use the break also but it is already under the return so no need of the break
+
+//   switch (isLogIn) {
+//     case true: {
+//       return (
+//         <div className="container">
+//           <article>
+//             <aside className="a1">Heading</aside>
+//             <aside className="a1">
+//               <ul>
+//                 <li>Home</li>
+//                 <li>Products</li>
+//                 <li>Blogs</li>
+//                 <li>Hi Manoj</li>
+//                 <li>
+//                   <button
+//                     type="button"
+//                     onClick={(event) => {
+//                       setIsLogedIn(false);
+//                     }}
+//                   >
+//                     LogOut
+//                   </button>
+//                 </li>
+//               </ul>
+//             </aside>
+//           </article>
+//         </div>
+//       );
+//     }
+//     case false: {
+//       return (
+//         <div className="container">
+//           <article>
+//             <aside className="a1">Heading</aside>
+//             <aside className="a1">
+//               <ul>
+//                 <li>Home</li>
+//                 <li>Products</li>
+//                 <li>Blogs</li>
+//                 <li>LogIn</li>
+//                 <li>SignUp</li>
+//               </ul>
+//             </aside>
+//           </article>
+//         </div>
+//       );
+//     }
+//   }
+// };
+
+// export default App;
+
+
+
+
+// !using ternary operator 
+import React, { useState } from 'react'
 
 const App = () => {
-  return (
-    <div>
-      <Child>
 
-          <h1>userName : Manoj</h1>
-          <h2>is : 784</h2>
-          <h3>skills : core-java , javascript , react</h3>
+  let [isLogIn, setIsLogedIn] = useState(true);
 
-      </Child>
-      
-    </div>
+  //* taking the nested components to render according to the ternary operator 
+
+  let IsGuest = ()=>{
+    return(
+      <>
+      <li>LogIn</li>
+      <li>
+        <button style={{
+          backgroundColor:isLogIn ? "red" : "white",
+        }} onClick={(event) => {
+          setIsLogedIn(true);
+        }}>
+          Sign-Up
+        </button>
+      </li>
+      </>
+    )
+  }
+
+
+
+  let IsUser = ()=>{
+    return(
+      <>
+      <li>Hi ! Manoj</li>
+      <li>
+        <button style={
+          {
+          backgroundColor:isLogIn ? "hotpink" : "yellow",
+          }
+        
+        
+        } onClick={(event) => {
+          setIsLogedIn(false);
+        }}>
+          Log-Out
+        </button>
+      </li>
+      </>
+    )
+  }
+
+
+
+  // !main return of the app component 
+  return(
+          <div className="container">
+          <article>
+            <aside className="a1">Heading</aside>
+            <aside className="a1">
+              <ul>
+                <li>Home</li>
+                <li>Products</li>
+                <li>Blogs</li>
+                {isLogIn ? <IsUser/> : <IsGuest/>}
+              </ul>
+            </aside>
+          </article>
+        </div>
   )
+
+
+
 }
 
 export default App
 
-// learned about the how to set the datatypes for the props in child component using the prop-types library and using the componentName.propTypes and also learned about the list and keys how it works in the React.fragement and also learned props.children (how to pass the children to the child from the parent component)
+
+
+
+
+
+// !using && operator (used for only the true conditional scenarioes)
+
+// import React, { Component } from 'react'
+// import { FaBell } from "react-icons/fa";
+
+// export default class App extends Component {
+//   state = {
+//     notifications : [
+//       "Manoj send you the friend request",
+//       "sheela viewed your profile",
+//       "Nauty atul send you friend request"
+//     ]
+//   }
+//   render() {
+//     return (
+//       <div>
+//         <h1><FaBell /></h1>
+//         <sup>
+//           {/* means the when the length array is greater than 0 then only display its length under that notification bar  */}
+//           {this.state.notifications.length > 0 && this.state.notifications.length}</sup>
+//       </div>
+//     )
+//   }
+// }
