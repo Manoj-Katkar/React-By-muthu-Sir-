@@ -786,78 +786,78 @@
 
 
 // !using ternary operator 
-import React, { useState } from 'react'
+// import React, { useState } from 'react'
 
-const App = () => {
+// const App = () => {
 
-  let [isLogIn, setIsLogedIn] = useState(true);
+//   let [isLogIn, setIsLogedIn] = useState(true);
 
-  //* taking the nested components to render according to the ternary operator 
+//   //* taking the nested components to render according to the ternary operator 
 
-  let IsGuest = ()=>{
-    return(
-      <>
-      <li>LogIn</li>
-      <li>
-        <button style={{
-          backgroundColor:isLogIn ? "red" : "white",
-        }} onClick={(event) => {
-          setIsLogedIn(true);
-        }}>
-          Sign-Up
-        </button>
-      </li>
-      </>
-    )
-  }
+//   let IsGuest = ()=>{
+//     return(
+//       <>
+//       <li>LogIn</li>
+//       <li>
+//         <button style={{
+//           backgroundColor:isLogIn ? "red" : "white",
+//         }} onClick={(event) => {
+//           setIsLogedIn(true);
+//         }}>
+//           Sign-Up
+//         </button>
+//       </li>
+//       </>
+//     )
+//   }
 
 
 
-  let IsUser = ()=>{
-    return(
-      <>
-      <li>Hi ! Manoj</li>
-      <li>
-        <button style={
-          {
-          backgroundColor:isLogIn ? "hotpink" : "yellow",
-          }
+//   let IsUser = ()=>{
+//     return(
+//       <>
+//       <li>Hi ! Manoj</li>
+//       <li>
+//         <button style={
+//           {
+//           backgroundColor:isLogIn ? "hotpink" : "yellow",
+//           }
         
         
-        } onClick={(event) => {
-          setIsLogedIn(false);
-        }}>
-          Log-Out
-        </button>
-      </li>
-      </>
-    )
-  }
+//         } onClick={(event) => {
+//           setIsLogedIn(false);
+//         }}>
+//           Log-Out
+//         </button>
+//       </li>
+//       </>
+//     )
+//   }
 
 
 
-  // !main return of the app component 
-  return(
-          <div className="container">
-          <article>
-            <aside className="a1">Heading</aside>
-            <aside className="a1">
-              <ul>
-                <li>Home</li>
-                <li>Products</li>
-                <li>Blogs</li>
-                {isLogIn ? <IsUser/> : <IsGuest/>}
-              </ul>
-            </aside>
-          </article>
-        </div>
-  )
+//   // !main return of the app component 
+//   return(
+//           <div className="container">
+//           <article>
+//             <aside className="a1">Heading</aside>
+//             <aside className="a1">
+//               <ul>
+//                 <li>Home</li>
+//                 <li>Products</li>
+//                 <li>Blogs</li>
+//                 {isLogIn ? <IsUser/> : <IsGuest/>}
+//               </ul>
+//             </aside>
+//           </article>
+//         </div>
+//   )
 
 
 
-}
+// }
 
-export default App
+// export default App
 
 
 
@@ -888,3 +888,225 @@ export default App
 //     )
 //   }
 // }
+
+
+
+
+
+
+
+
+
+// !04/09/24
+// controller and un-controller Component
+// control : data stored in state , to change the value pass the onChange event and witin that property change the state value 
+// 
+// ~logIn form how it works in React
+
+// import React, { Component, useRef, useState } from "react";
+
+// const App = () => {
+//   let [username, setUsername] = useState("");
+//   let [password, setPassword] = useState("");
+//   let [email, setEmail] = useState("");
+//   let handleSubmit = (e) => {
+//     e.preventDefault();
+//     console.log(username, password, email);
+//   };
+//   return (
+//     <div className="container">
+//       <h1>LogIn form</h1>
+//       <form onSubmit={handleSubmit}>
+//         <input
+//           type="text"
+//           name="username"
+//           id="username"
+//           placeholder="Enter Username"
+//           onChange={(e) => {
+//             setUsername(e.target.value);
+//           }}
+//           value={username}
+//         />{" "}
+//         <br />
+//         <input
+//           type="password"
+//           name="password"
+//           id="password"
+//           placeholder="Enter Password"
+//           value={password}
+//           onChange={(e) => setPassword(e.target.value)}
+//         />
+//         <br />
+//         <input
+//           type="email"
+//           name="email"
+//           id="email"
+//           placeholder="Enter Email"
+//           value={email}
+//           onChange={(e) => setEmail(e.target.value)}
+//         />{" "}
+//         <br />
+//         {/* <label htmlFor="gender">Select Gender :</label>
+//         <div className="container-gender">
+//           <input type="radio" name="gender" id="male" value={"male"} /> male{" "}
+//           <br />
+//           <input type="radio" name="gender" id="female" value={"female"} />{" "}
+//           female <br />
+//           <input type="radio" name="gender" id="others" value={"others"} />{" "}
+//           others <br />
+//         </div>
+//         <label htmlFor="courses">Select Course :</label>
+//         <div className="courses">
+//           <input type="checkbox" name="courses" id="java" value={"java"} /> java{" "}
+//           <input type="checkbox" name="courses" id="js" value={"js"} />{" "}
+//           javascript
+//           <input type="checkbox" name="courses" id="PHP" value={"PHP"} /> PHP
+//           <input type="checkbox" name="courses" id="SQL" value={"SQL"} /> SQL
+//           <input type="checkbox" name="courses" id="SDLC" value={"SDLC"} /> SDLC
+//         </div> */}
+//         <button type="submit">Submit</button>
+//       </form>
+//     </div>
+//   );
+// };
+
+// export default App;
+
+
+
+
+
+
+
+
+
+//!date 05/09/2024
+//* How to store the mutiple state value within one useState using object to access the form data in React
+// !in react we will use controller form
+
+import React, { useRef, useState } from "react";
+import countries from "./countriesData.json";
+const App = () => {
+  let [countriesAll, setCountriesAll] = useState(countries);
+  let [data, setData] = useState({
+    username: "",
+    password: "",
+    email: "",
+    gender: "",
+    DOB: "",
+    percentage: "50",
+    course: [],
+    country: "",
+  });
+  let handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(data);
+  };
+  let handleChange = (e) => {
+    // console.log(e);
+    let { name, value } = e.target;
+    setData({ ...data, [name]: value });
+  };
+  let handleChangeCourse = (e) => {
+    let { value } = e.target;
+    let { course } = data;
+    if (course.includes(value) === false) {
+      data.course.push(value);
+    } else {
+      let index = course.indexOf(value);
+      data.course.splice(index, 1);
+    }
+  };
+  return (
+    <div className="container">
+      <h1>LogIn form</h1>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          placeholder="Enter Username"
+          onChange={handleChange}
+          value={data.username}
+        />{" "}
+        <br />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Enter Password"
+          value={data.password}
+          onChange={handleChange}
+        />
+        <br />
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Enter Email"
+          value={data.email}
+          onChange={handleChange}
+        />{" "}
+        <br />
+        <label htmlFor="percentage">Percentage</label>
+        <input
+          type="range"
+          name="percentage"
+          id="percentage"
+          value={data.percentage}
+          max={100}
+          min={35}
+          onChange={handleChange}
+        />
+        <span>{data.percentage}</span>
+        <br />
+        <label htmlFor="DOB">Select DOB : </label>
+        <input
+          type="date"
+          name="DOB"
+          id="DOB"
+          onChange={handleChange}
+          value={data.DOB}
+        />
+        
+        <br />
+        <label htmlFor="gender">Select Gender :</label>
+        <div className="container-gender" onChange={handleChange}>
+          <input type="radio" name="gender" id="male" value={"male"} /> male{" "}
+          <br />
+          <input type="radio" name="gender" id="female" value={"female"} />{" "}
+          female <br />
+          <input type="radio" name="gender" id="others" value={"others"} />{" "}
+          others <br />
+        </div>
+        <label htmlFor="courses">Select Course :</label>
+        <div className="courses" onChange={handleChangeCourse}>
+          <input type="checkbox" name="courses" id="java" value={"java"} /> java{" "}
+          <input type="checkbox" name="courses" id="js" value={"js"} />{" "}
+          javascript
+          <input type="checkbox" name="courses" id="PHP" value={"PHP"} /> PHP
+          <input type="checkbox" name="courses" id="SQL" value={"SQL"} /> SQL
+          <input type="checkbox" name="courses" id="SDLC" value={"SDLC"} /> SDLC
+        </div>
+        <label htmlFor="country">select Country</label>
+        <select name="country" id="country" onChange={handleChange}>
+          {countriesAll.map((v, i) => {
+            let { name } = v;
+            return (
+              <option key={i + 1} value={name}>
+                {name}
+              </option>
+            );
+          })}
+        </select>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
+};
+
+export default App;
+
+
+
+
