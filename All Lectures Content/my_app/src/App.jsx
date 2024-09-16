@@ -1401,100 +1401,145 @@ behavior in a more unified way.
 
 // !Date : 12/09/24
 //^========================================== Updating Phase ==============================
+// &here I am binding the handleClick function to set the value of the this keyword 
+import React, { Component } from 'react'
+import products from './data.json'
 
-// import React, { Component } from 'react'
-// import products from '/src/data.json'
+export default class App extends Component {
 
-// export default class App extends Component {
+  // !taking the constructor 
+  constructor(props){
+    super(props);
+    this.state = {
+      data:products,
+    };
 
+    console.log("constructor executed");
 
-//   static getDerivedStateFromProps(props , state){
-//     console.log("getDerivedStateFromProps method");
-//     return null;
-    
-//   }
-
-//   shouldComponentUpdate(){
-//     console.log("shouldComponentUpdate");
-//     return true;
-    
-//   }
-
-
-//   getSnapshotBeforeUpdate(prevProps , prevState){
-//     console.log("getSnapshotBeforeUpdate method");
-
-//     return [prevProps , prevState];
-    
-//   }
-
-
-//   componentDidMount(prevProps , prevState , snapshot){
-//     console.log("componentDidMount method");
-//     console.log(prevProps);
-//     console.log(prevState);
-//     console.log(snapshot);
-//     alert("Products updated")
+// ^here I am binding the handleClick function to set the value of the this keyword 
+    this.handleClick = this.handleClick.bind(this);
 
     
+  }
+
+
+  // !handleClick() function 
+
+  handleClick(){
+    window.fetch("https://dummyjson.com/products")
+    .then((dataFromServer) => {
+
+      console.log("dataFromServer" , dataFromServer);
+      
+
+      //then I have to convert that data in the javascript format 
+      dataFromServer.json()
+      .then((convertedData) => {
+        this.setState({data:convertedData.products})
+
+        console.log("convertedData" , convertedData);
+        
+      })
+      .catch((error) => {
+        console.log(error);
+        
+      })
+    })
+    .catch((error) => {
+      console.log(error);
+      
+    })
+
+  }
+
+
+  static getDerivedStateFromProps(props , state){
+    console.log("getDerivedStateFromProps method");
+    return null;
     
-//   }
+  }
 
-//   componentDidMount(){
-//     console.log("componentDidMount method");
+  shouldComponentUpdate(){
+    console.log("shouldComponentUpdate");
+    return true;
     
-//   }
+  }
 
 
+  getSnapshotBeforeUpdate(prevProps , prevState){
+    console.log("getSnapshotBeforeUpdate method");
+
+    return [prevProps , prevState];
+    
+  }
 
 
-//   render() {
-//     console.log(products);
-//     console.log("render method");
+  componentDidUpdate(prevProps , prevState , snapshot){
+    console.log("componentDidMount method");
+    console.log(prevProps);
+    console.log(prevState);
+    console.log(snapshot);
+    alert("Products updated")
+
     
     
-//     return (
-//       <section>
-//         <article>
-//           <button onClick={handleClick}>update products</button>
-//         </article>
+  }
 
-//         <table>
-//           <thead>
-//             <tr>
-//               <th>Id</th>
-//               <th>Image</th>
-//               <th>Title</th>
-//               <th>Description</th>
-//               <th>Price</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {
-//               this.state.data.map((currentProduct , index) => {
-//                 let {id , title , description , price , image , thumbnail} = currentProduct;
+  componentDidMount(){
+    console.log("componentDidMount method");
+    
+  }
 
 
-//                 return (
-//                   <tr key={index}>
-//                     <td>{id}</td>
-//                     <td>
-//                       <img src={image || thumbnail} alt="" />
-//                     </td>
-//                     <td>{title}</td>
-//                     <td>{description}</td>
-//                     <td>{price}</td>
-//                   </tr>
 
-//                 )
-//               })
-//             }
-//           </tbody>
-//         </table>
-//       </section>
-//     )
-//   }
-// }
+
+  render() {
+    console.log(products);
+    console.log("render method");
+    
+    
+    return (
+      <section>
+        <article>
+          <button onClick={this.handleClick}>update products</button>
+        </article>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Image</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              this.state.data.map((currentProduct , index) => {
+                let {id , title , description , price , image , thumbnail} = currentProduct;
+
+
+                return (
+                  <tr key={index}>
+                    <td>{id}</td>
+                    <td>
+                      <img src={image || thumbnail} alt="" />
+                    </td>
+                    <td>{title}</td>
+                    <td>{description}</td>
+                    <td>{price}</td>
+                  </tr>
+
+                )
+              })
+            }
+          </tbody>
+        </table>
+      </section>
+    )
+  }
+}
 
 
 
@@ -1649,57 +1694,58 @@ behavior in a more unified way.
         Use `useMemo()` when the calculation is heavy or when dependencies rarely change.
  */
 
+        // !implementation of the useMemo() hook 
 
-import React, { useMemo, useState } from 'react'
+// import React, { useMemo, useState } from 'react'
 
-const App = () => {
-  let [count , setCount] = useState(0);
+// const App = () => {
+//   let [count , setCount] = useState(0);
 
-  let [dark , setDark] = useState(false);
+//   let [dark , setDark] = useState(false);
 
-  let doubleNumberOfCount = useMemo(() => {
-      return slowerFunction(count);
-  } , [count]);
+//   let doubleNumberOfCount = useMemo(() => {
+//       return slowerFunction(count);
+//   } , [count]);
 
-  return (
-    <div>
-      <input 
-      type="number" 
-      name='number'
-      id='number'
-      value={count}
-      onChange={(event) => {
-        setCount(event.target.value);
-      }}
-      />
+//   return (
+//     <div>
+//       <input 
+//       type="number" 
+//       name='number'
+//       id='number'
+//       value={count}
+//       onChange={(event) => {
+//         setCount(event.target.value);
+//       }}
+//       />
 
-      <button onClick={(event) => {
-        setDark((previousValue) => !previousValue)
-      }}>Change Color</button>
-
-
-      <h1
-          style={{
-            background:dark? "black" : "white",
-            color:dark? "white" : "black",
-          }}
-          >
-        {doubleNumberOfCount}
-      </h1>
-    </div>
-  )
-}
-
-export default App
-
-function slowerFunction(number){
-    for(let i = 0 ; i <= 100000000 ; i++){
-      //just take the time and then return the some doubled value 
-    }
-
-    return (number*2);
+//       <button onClick={(event) => {
+//         setDark((previousValue) => !previousValue)
+//       }}>Change Color</button>
 
 
-}
+//       <h1
+//           style={{
+//             background:dark? "black" : "white",
+//             color:dark? "white" : "black",
+//           }}
+//           >
+//         {doubleNumberOfCount}
+//       </h1>
+//     </div>
+//   )
+// }
+
+// export default App
+
+// function slowerFunction(number){
+//     for(let i = 0 ; i <= 100000000 ; i++){
+//       //just take the time and then return the some doubled value 
+//     }
+
+//     return (number*2);
+
+
+// }
 
 // learned about the useReducer() used for storing the state which is having the complex logic and useMemo() hook used for the optimization it will get re-render for that particular state only 
