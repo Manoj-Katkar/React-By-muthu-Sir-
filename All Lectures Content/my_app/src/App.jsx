@@ -1287,12 +1287,13 @@
 // !Life Cycle methods in React (In class based component)
 // learned about Setting the routes using the inbuilt hook useRoutes([]) it is there in my-routing-app in one js file and also learned about the React component Lifecycle in classBased and Function based 
 /*
-The three main phases in React's component lifecycle are:
+^The three main phases in React's component lifecycle are:
 
 *1. **Mounting** (Initial Rendering Phase):
    - This is when a component is being created and inserted into the DOM for the first time.
    - **Key methods:**
      - `constructor()`: Initializes the component's state and binds methods.
+     - getDerivedStateFromProps() method : if we want to change the value of the state which depends upon the props then we use getDerivedStateFromProps 
      - `render()`: Returns the JSX that defines the structure of the UI.
      - `componentDidMount()`: Runs after the component is rendered, often used to fetch data or set up subscriptions.
 
@@ -1314,80 +1315,391 @@ behavior in a more unified way.
 
 */
 
+// ^refer the below image : under src/images/React Lifecycle methods class based component
 
-import React, { Component } from 'react'
-import DisplayProducts from './Components/DisplayProducts';
 
-export default class App extends Component {
-  constructor(){
-    super();
-    console.log("constructor rendered");
+
+// !Mounting phase 
+// import React, { Component } from 'react'
+// import DisplayProducts from './Components/DisplayProducts';
+
+// export default class App extends Component {
+//   constructor(){
+//     super();
+//     console.log("constructor rendered");
     
-    this.state = {
-      products : []
-    }
-  }
+//     this.state = {
+//       products : []
+//     }
+//   }
 
-  // one static method 
-  static getDerivedStateFromProps(props , state){
-    console.log(props , state);
-    console.log("getDerivedStateFromProps rendered");
+//   // one static method 
+//   static getDerivedStateFromProps(props , state){
+//     console.log(props , state);
+//     console.log("getDerivedStateFromProps rendered");
+//     // !if we want to change the value of the state which depends upon the props then we use getDerivedStateFromProps 
 
-    return null;  //!because I have not changed the value of the state here 
+//     return null;  //!because I have not changed the value of the state here 
     
     
-  }
+//   }
 
 
-  // ^imp method for the component mounting stage 
-  componentDidMount(){
-    console.log("Component Mounted");
-    window.fetch("https://fakestoreapi.com/products" , {method : "GET"})
-    .then((data) => {
-      // then I have to convert the data in the javascript format 
-      data.json()
-      .then((convertedData) => {
-        // console.log(convertedData);
-        this.setState({products : convertedData});
+//   // ^imp method for the component mounting stage 
+//   componentDidMount(){
+//     console.log("Component Mounted");
+//     window.fetch("https://fakestoreapi.com/products" , {method : "GET"})
+//     .then((data) => {
+//       // then I have to convert the data in the javascript format 
+//       data.json()
+//       .then((convertedData) => {
+//         // console.log(convertedData);
+//         this.setState({products : convertedData});
         
-      })
-      .catch((error) => {
-        console.log(error);
+//       })
+//       .catch((error) => {
+//         console.log(error);
         
-      })
-    })
-    .catch((error) => {
-      console.log(error);
+//       })
+//     })
+//     .catch((error) => {
+//       console.log(error);
       
-    })
+//     })
 
-    // !work I have to do that I have to iterate over the array and render the each product in the UI 
-  }
-  render() {
-    console.log("render method");
+//     // !work I have to do that I have to iterate over the array and render the each product in the UI 
+//   }
+//   render() {
+//     console.log("render method");
     
 
-    return (
-      <>
-          <table>
-            <thead>
-              <tr>
-                <th>id</th>
-                <th>image</th>
-                <th>title</th>
-                <th>price</th>
-                <th>ratings</th>
-              </tr>
-            </thead>
+//     return (
+//       <>
+//           <table>
+//             <thead>
+//               <tr>
+//                 <th>id</th>
+//                 <th>image</th>
+//                 <th>title</th>
+//                 <th>price</th>
+//                 <th>ratings</th>
+//               </tr>
+//             </thead>
 
-            <tbody>
-              <DisplayProducts AllProducts={this.state.products}/>
-            </tbody>
-          </table>
-      </>
-    )
-  }
+//             <tbody>
+//               <DisplayProducts AllProducts={this.state.products}/>
+//             </tbody>
+//           </table>
+//       </>
+//     )
+//   }
+// }
+
+
+
+
+
+// !Date : 12/09/24
+//^========================================== Updating Phase ==============================
+
+// import React, { Component } from 'react'
+// import products from '/src/data.json'
+
+// export default class App extends Component {
+
+
+//   static getDerivedStateFromProps(props , state){
+//     console.log("getDerivedStateFromProps method");
+//     return null;
+    
+//   }
+
+//   shouldComponentUpdate(){
+//     console.log("shouldComponentUpdate");
+//     return true;
+    
+//   }
+
+
+//   getSnapshotBeforeUpdate(prevProps , prevState){
+//     console.log("getSnapshotBeforeUpdate method");
+
+//     return [prevProps , prevState];
+    
+//   }
+
+
+//   componentDidMount(prevProps , prevState , snapshot){
+//     console.log("componentDidMount method");
+//     console.log(prevProps);
+//     console.log(prevState);
+//     console.log(snapshot);
+//     alert("Products updated")
+
+    
+    
+//   }
+
+//   componentDidMount(){
+//     console.log("componentDidMount method");
+    
+//   }
+
+
+
+
+//   render() {
+//     console.log(products);
+//     console.log("render method");
+    
+    
+//     return (
+//       <section>
+//         <article>
+//           <button onClick={handleClick}>update products</button>
+//         </article>
+
+//         <table>
+//           <thead>
+//             <tr>
+//               <th>Id</th>
+//               <th>Image</th>
+//               <th>Title</th>
+//               <th>Description</th>
+//               <th>Price</th>
+//             </tr>
+//           </thead>
+//           <tbody>
+//             {
+//               this.state.data.map((currentProduct , index) => {
+//                 let {id , title , description , price , image , thumbnail} = currentProduct;
+
+
+//                 return (
+//                   <tr key={index}>
+//                     <td>{id}</td>
+//                     <td>
+//                       <img src={image || thumbnail} alt="" />
+//                     </td>
+//                     <td>{title}</td>
+//                     <td>{description}</td>
+//                     <td>{price}</td>
+//                   </tr>
+
+//                 )
+//               })
+//             }
+//           </tbody>
+//         </table>
+//       </section>
+//     )
+//   }
+// }
+
+
+
+
+
+//! =======================================Un-Mounting ======================================
+
+// import React, { Component } from 'react'
+// import Child from './Child';
+
+// export default class App extends Component {
+//   // ^Constructor 
+//   constructor(props){
+//     console.log("constructor rendered");
+//     super(props)
+//     this.state = {
+//       count : 0
+//     }
+    
+//   }
+
+
+//   static getDerivedStateFromProps(){
+//     console.log("getDerivedStateFromProps method");
+//     return null;
+    
+//   }
+
+//   componentDidMount(){
+//     console.log("componentDidMount method");
+    
+//   }
+//   render() {
+//     console.log("render method");
+    
+//     return (
+//       <div>
+//         <h2>App component = {this.state.count}</h2>
+//         <button onClick={(event) => {
+//           this.setState({count : this.state.count + 1})
+//         }}>
+//             Increment
+//         </button>
+//         {/* Now here I will do the conditional rendering using the ternary operator */}
+
+//         {this.state.count <= 5 ? <Child count={this.state.count}/> : null}
+        
+//       </div>
+//     )
+//   }
+// }
+
+
+
+// !I have to take the code from the my peers about the updating and un-mounting phase in react class based component 
+
+
+
+
+
+
+
+
+
+
+// ?Date : 16/09/24
+//useReducer() hook :
+/**
+ * * 1)we use the useReducer() hook to store the state value only 
+ * * 2) but we have useState() also so when to use which 
+ *     ^ i)when our code is going to have the complex logic to store the state value then use useReducer() hook
+ *     ^ ii) when in the code you directlly storing the state that is not having any complex logic then use the useState() hook 
+ * 
+ * ! useReducer() : 
+ * &               i)it will take the 2 arguments 
+ * *                         1)reducerFunction()
+ *  *                        2)initialStateValue
+ * 
+ * &              ii) it will return the one array having the 2 elements in it 
+ *  *                        [stateValue , dispatchFunction]
+ * 
+ * &             iii)when we will call the dispatchFunction() then reducerFunction() will get executed that is used to 
+ * &              update the state value where that updated state value we have to return it from the reducer function 
+ */
+
+// import React, { useReducer } from 'react'
+
+// let initialStateValue = 0 ;
+
+// let reducerFunction = (stateValue , action) => {
+//   // action = it will be the objeect inside that type is one key and it is having the mutiple values like increment , decrement , reset
+//     switch(action.type){
+//       case "Increment":
+//         return stateValue + 1;
+      
+//       case "Decrement":
+//         return stateValue - 1;
+      
+//       case "Reset":
+//         return initialStateValue; 
+//       default:
+//         return stateValue;   
+//     }
+// }
+
+// const App = () => {
+
+//   let [count , dispatchFunction] = useReducer(reducerFunction , initialStateValue);
+
+//   return (
+//     <div>
+//       <h1>count = {count}</h1>
+//       <button type='button' onClick={() => {
+//         dispatchFunction({type: "Increment" })
+//       }}>Increment</button>
+//       <button type='button' onClick={() => {
+//         dispatchFunction({type: "Decrement" })
+//       }}>Decrement</button>
+
+//       <button type='button' onClick={() => {
+//         dispatchFunction({type: "Reset" })
+//       }}>Reset</button>
+//     </div>
+//   )
+// }
+
+// export default App
+
+
+
+
+
+
+
+
+
+// !useMemo() hook : 
+/**
+ * *  1)it returns the memoized value of the function 
+ * * 2)we use this for the optimization (means if I am changing the particular state which is 
+ *   *taking the more time to get updated in the UI then at such scenarioes I have to use the useMemo() hook )
+ * 
+ * 
+ * 
+        * The `useMemo()` hook in React is used for performance optimization. Here's how it helps:
+
+        1. **Memoizes Expensive Calculations**: Prevents recalculating values unless dependencies change, improving efficiency.
+        2. **Reduces Unnecessary Re-renders**: Stops React from recalculating or re-rendering components unnecessarily.
+        3. **Optimizes Performance**: Helps avoid performance bottlenecks in large or complex apps.
+        4. **Keeps UI Snappy**: Reduces lag or slowdowns caused by frequent calculations or renders.
+
+        Use `useMemo()` when the calculation is heavy or when dependencies rarely change.
+ */
+
+
+import React, { useMemo, useState } from 'react'
+
+const App = () => {
+  let [count , setCount] = useState(0);
+
+  let [dark , setDark] = useState(false);
+
+  let doubleNumberOfCount = useMemo(() => {
+      return slowerFunction(count);
+  } , [count]);
+
+  return (
+    <div>
+      <input 
+      type="number" 
+      name='number'
+      id='number'
+      value={count}
+      onChange={(event) => {
+        setCount(event.target.value);
+      }}
+      />
+
+      <button onClick={(event) => {
+        setDark((previousValue) => !previousValue)
+      }}>Change Color</button>
+
+
+      <h1
+          style={{
+            background:dark? "black" : "white",
+            color:dark? "white" : "black",
+          }}
+          >
+        {doubleNumberOfCount}
+      </h1>
+    </div>
+  )
 }
 
+export default App
+
+function slowerFunction(number){
+    for(let i = 0 ; i <= 100000000 ; i++){
+      //just take the time and then return the some doubled value 
+    }
+
+    return (number*2);
 
 
+}
+
+// learned about the useReducer() used for storing the state which is having the complex logic and useMemo() hook used for the optimization it will get re-render for that particular state only 

@@ -7,6 +7,9 @@ import Home from './components/Home'
 import Products from './components/Products'
 import AboutUs from './components/AboutUs'
 import NavBar from './components/NavBar'
+import OrderSummary from './components/OrderSummary'
+import { Outlet } from 'react-router-dom'
+
 
 
 
@@ -18,8 +21,13 @@ function App() {
       <NavBar/>
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="/about-us" element={<AboutUs/>}/>
+        <Route path="/about-us" element={<AboutUs/>}>
+
+            <Route path='/ordersummary' element={<OrderSummary/>}/>
+
+        </Route>
         <Route path="/products" element={<Products/>}/>
+        {/* <Route path='*' element={<PageNotFound/>}/> */}
       </Routes>
     </>
   )

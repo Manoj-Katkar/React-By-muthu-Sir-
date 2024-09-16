@@ -248,18 +248,88 @@
 // ^ All the childrens will get in the props so we have to access it using the props.children or we can destructure it directlly as the children and then access it 
 // ^or I can destructure it to children
 
-import React from 'react'
+// import React from 'react'
 
-const Child = (props) => {
+// const Child = (props) => {
 
-  console.log(props);  //*it will be there in the form of object of array having total childrens that are got passed from the parent 
+//   console.log(props);  //*it will be there in the form of object of array having total childrens that are got passed from the parent 
   
-  return (
-    <div>{props.children}</div>
-  )
+//   return (
+//     <div>{props.children}</div>
+//   )
+// }
+
+// export default Child
+
+
+
+
+
+
+
+//  !================================Un-Mounting Phase ==========================
+
+// ^How componentWillUnmount() method will work 
+// *here I am returning the value from the getDerivedStateFromProps() method 
+
+import React, { Component } from 'react'
+
+export default class Child extends Component {
+
+    // ^Constructor 
+    constructor(props){
+        super(props);
+
+        this.state = {
+            value : 0,
+        };
+
+        console.log("constructor child");
+        
+    }
+
+
+    static getDerivedStateFromProps(props , state){
+        console.log("getDerivedStateFromProps child method");
+
+        return {value : props.count};   //*here I am taking the value from the props that I am reciving 
+        
+
+    }
+
+    componentDidMount(){
+        console.log("Component Mounted Child");
+        
+    }
+
+    componentWillUnmount(){
+        // * this method will get executed when the that particular component will get removed from the DOM tree 
+
+        console.log("component Un-mounted method child");
+        alert("component unmounted");
+        
+    }
+
+
+
+
+
+
+  render() {
+    console.log("render child method");
+    
+    return (
+      <div>
+           <h2>
+            Child Component = {this.state.value}
+           </h2>
+      </div>
+    )
+  }
 }
 
-export default Child
+
+
 
 
 
