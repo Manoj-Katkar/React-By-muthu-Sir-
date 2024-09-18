@@ -1402,144 +1402,144 @@ behavior in a more unified way.
 // !Date : 12/09/24
 //^========================================== Updating Phase ==============================
 // &here I am binding the handleClick function to set the value of the this keyword 
-import React, { Component } from 'react'
-import products from './data.json'
+// import React, { Component } from 'react'
+// import products from './data.json'
 
-export default class App extends Component {
+// export default class App extends Component {
 
-  // !taking the constructor 
-  constructor(props){
-    super(props);
-    this.state = {
-      data:products,
-    };
+//   // !taking the constructor 
+//   constructor(props){
+//     super(props);
+//     this.state = {
+//       data:products,
+//     };
 
-    console.log("constructor executed");
+//     console.log("constructor executed");
 
-// ^here I am binding the handleClick function to set the value of the this keyword 
-    this.handleClick = this.handleClick.bind(this);
+// // ^here I am binding the handleClick function to set the value of the this keyword 
+//     this.handleClick = this.handleClick.bind(this);
 
     
-  }
+//   }
 
 
-  // !handleClick() function 
+//   // !handleClick() function 
 
-  handleClick(){
-    window.fetch("https://dummyjson.com/products")
-    .then((dataFromServer) => {
+//   handleClick(){
+//     window.fetch("https://dummyjson.com/products")
+//     .then((dataFromServer) => {
 
-      console.log("dataFromServer" , dataFromServer);
+//       console.log("dataFromServer" , dataFromServer);
       
 
-      //then I have to convert that data in the javascript format 
-      dataFromServer.json()
-      .then((convertedData) => {
-        this.setState({data:convertedData.products})
+//       //then I have to convert that data in the javascript format 
+//       dataFromServer.json()
+//       .then((convertedData) => {
+//         this.setState({data:convertedData.products})
 
-        console.log("convertedData" , convertedData);
+//         console.log("convertedData" , convertedData);
         
-      })
-      .catch((error) => {
-        console.log(error);
+//       })
+//       .catch((error) => {
+//         console.log(error);
         
-      })
-    })
-    .catch((error) => {
-      console.log(error);
+//       })
+//     })
+//     .catch((error) => {
+//       console.log(error);
       
-    })
+//     })
 
-  }
+//   }
 
 
-  static getDerivedStateFromProps(props , state){
-    console.log("getDerivedStateFromProps method");
-    return null;
+//   static getDerivedStateFromProps(props , state){
+//     console.log("getDerivedStateFromProps method");
+//     return null;
     
-  }
+//   }
 
-  shouldComponentUpdate(){
-    console.log("shouldComponentUpdate");
-    return true;
+//   shouldComponentUpdate(){
+//     console.log("shouldComponentUpdate");
+//     return true;
     
-  }
+//   }
 
 
-  getSnapshotBeforeUpdate(prevProps , prevState){
-    console.log("getSnapshotBeforeUpdate method");
+//   getSnapshotBeforeUpdate(prevProps , prevState){
+//     console.log("getSnapshotBeforeUpdate method");
 
-    return [prevProps , prevState];
+//     return [prevProps , prevState];
     
-  }
+//   }
 
 
-  componentDidUpdate(prevProps , prevState , snapshot){
-    console.log("componentDidMount method");
-    console.log(prevProps);
-    console.log(prevState);
-    console.log(snapshot);
-    alert("Products updated")
+//   componentDidUpdate(prevProps , prevState , snapshot){
+//     console.log("componentDidMount method");
+//     console.log(prevProps);
+//     console.log(prevState);
+//     console.log(snapshot);
+//     alert("Products updated")
 
-    
-    
-  }
-
-  componentDidMount(){
-    console.log("componentDidMount method");
-    
-  }
-
-
-
-
-  render() {
-    console.log(products);
-    console.log("render method");
     
     
-    return (
-      <section>
-        <article>
-          <button onClick={this.handleClick}>update products</button>
-        </article>
+//   }
 
-        <table>
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Image</th>
-              <th>Title</th>
-              <th>Description</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              this.state.data.map((currentProduct , index) => {
-                let {id , title , description , price , image , thumbnail} = currentProduct;
+//   componentDidMount(){
+//     console.log("componentDidMount method");
+    
+//   }
 
 
-                return (
-                  <tr key={index}>
-                    <td>{id}</td>
-                    <td>
-                      <img src={image || thumbnail} alt="" />
-                    </td>
-                    <td>{title}</td>
-                    <td>{description}</td>
-                    <td>{price}</td>
-                  </tr>
 
-                )
-              })
-            }
-          </tbody>
-        </table>
-      </section>
-    )
-  }
-}
+
+//   render() {
+//     console.log(products);
+//     console.log("render method");
+    
+    
+//     return (
+//       <section>
+//         <article>
+//           <button onClick={this.handleClick}>update products</button>
+//         </article>
+
+//         <table>
+//           <thead>
+//             <tr>
+//               <th>Id</th>
+//               <th>Image</th>
+//               <th>Title</th>
+//               <th>Description</th>
+//               <th>Price</th>
+//             </tr>
+//           </thead>
+//           <tbody>
+//             {
+//               this.state.data.map((currentProduct , index) => {
+//                 let {id , title , description , price , image , thumbnail} = currentProduct;
+
+
+//                 return (
+//                   <tr key={index}>
+//                     <td>{id}</td>
+//                     <td>
+//                       <img src={image || thumbnail} alt="" />
+//                     </td>
+//                     <td>{title}</td>
+//                     <td>{description}</td>
+//                     <td>{price}</td>
+//                   </tr>
+
+//                 )
+//               })
+//             }
+//           </tbody>
+//         </table>
+//       </section>
+//     )
+//   }
+// }
 
 
 
@@ -1749,3 +1749,85 @@ export default class App extends Component {
 // }
 
 // learned about the useReducer() used for storing the state which is having the complex logic and useMemo() hook used for the optimization it will get re-render for that particular state only 
+
+
+
+
+
+
+
+// !====================================Date : 18/09/24=====================
+
+// ^useCallback() hook used for the performance optimization while rendering the differant components 
+// ^useMemo() hook is used for the performance optimization whithin the that particular component if it is having some slower functions then use useMemo()
+
+
+// import React, { useCallback, useState } from 'react'
+// import Title from './Components/Title';
+// import Counter from './Components/Counter';
+// import Button from './Components/Button';
+
+// const App = () => {
+//   // lets take the few state
+//   let [age , setAge] = useState(25);
+//   let [salary , setSalary] = useState(25000);
+
+//   // !taking the few functions 
+//   let IncrementAge = useCallback(() => {
+//     setAge((previousAge) => {
+//       return previousAge + 1
+//     })
+//   } , [age])
+
+
+
+//   let IncrementSalary = useCallback(() => {
+//     setSalary((previousSalary) => {
+//       return previousSalary + 10000;
+//     })
+//   } , [salary])
+
+
+
+//   return (
+//     <div>
+//       <Title/>
+//       <Counter text="age" count={age}/>
+//       <Button handleClick={IncrementAge}>Increment Age</Button>
+//       <Counter text="salary" count={salary}/>
+//       <Button handleClick={IncrementSalary}>Increment Salary</Button>
+//     </div>
+//   )
+// }
+
+// export default App
+
+
+
+
+
+
+// !Higher order Component 
+//^ theory :  (Very Important)
+//* 1) A Component which takes another component as an argument and returns new component that is known as the higher order component (HOC)
+//* 2) it is the technique to re-use the component logic 
+
+import React from 'react'
+import ClickCounter from './Components/ClickCounter'
+import HoverCounter from './Components/HoverCounter'
+
+const App = () => {
+  return (
+    <div>
+      <ClickCounter name="sachin"/>
+      <HoverCounter name="dhoni" />
+    </div>
+  )
+}
+
+export default App
+
+
+// learned about the higher order component which is used for the re-use the same logic to avoid the code redundancy and also learned about the useCallback() hook which is used  performance optimization while rendering the different components 
+
+
