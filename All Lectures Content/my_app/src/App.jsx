@@ -1812,22 +1812,78 @@ behavior in a more unified way.
 //* 1) A Component which takes another component as an argument and returns new component that is known as the higher order component (HOC)
 //* 2) it is the technique to re-use the component logic 
 
-import React from 'react'
-import ClickCounter from './Components/ClickCounter'
-import HoverCounter from './Components/HoverCounter'
+// import React from 'react'
+// import ClickCounter from './Components/ClickCounter'
+// import HoverCounter from './Components/HoverCounter'
 
-const App = () => {
-  return (
-    <div>
-      <ClickCounter name="sachin"/>
-      <HoverCounter name="dhoni" />
-    </div>
-  )
-}
+// const App = () => {
+//   return (
+//     <div>
+//       <ClickCounter name="sachin"/>
+//       <HoverCounter name="dhoni" />
+//     </div>
+//   )
+// }
 
-export default App
+// export default App
 
 
 // learned about the higher order component which is used for the re-use the same logic to avoid the code redundancy and also learned about the useCallback() hook which is used  performance optimization while rendering the different components 
 
 
+
+
+// !Practice of the useRef() hook which is used to target the react element 
+// & in useRef() there is one important property that is referance.current  whit this I can do any changes for that targeted react element 
+
+import React, { useRef, useState } from 'react'
+
+const App = () => {
+  let referance = useRef();
+
+  let [activeStatus , setActiveStatus] = useState(false);
+
+  let handleClick = (event) => {
+
+    // ^also change the state value 
+    setActiveStatus(true);
+
+    // ^using the referance of that react element that we have stored using the useRef() hook
+
+    // referance.current.style.backgroundColor = "red";
+
+
+
+    // ^Normal way
+    // event.target.style.backgroundColor = "red";
+
+
+  }
+
+
+  let handleMouseOut = () => {
+    setActiveStatus(false);
+
+    // also change the color 
+    // referance.current.style.backgroundColor = "hotpink";
+  }
+  return (
+    <div>
+      <button
+      ref={referance}
+      onMouseOver={handleClick}
+      onMouseOut={handleMouseOut}
+      style={{
+        backgroundColor: activeStatus ? "red" : "hotpink", // *Conditional styling here
+        color : "black",
+        margin : "2rem",
+        padding : "2rem",
+        borderRadius : "7px"
+
+      }}
+      >Click Me</button>
+    </div>
+  )
+}
+
+export default App
