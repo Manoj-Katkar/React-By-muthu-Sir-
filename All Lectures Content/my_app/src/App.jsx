@@ -1836,54 +1836,173 @@ behavior in a more unified way.
 // !Practice of the useRef() hook which is used to target the react element 
 // & in useRef() there is one important property that is referance.current  whit this I can do any changes for that targeted react element 
 
-import React, { useRef, useState } from 'react'
+// import React, { useRef, useState } from 'react'
+
+// const App = () => {
+//   let referance = useRef();
+
+//   let [activeStatus , setActiveStatus] = useState(false);
+
+//   let handleClick = (event) => {
+
+//     // ^also change the state value 
+//     setActiveStatus(true);
+
+//     // ^using the referance of that react element that we have stored using the useRef() hook
+
+//     // referance.current.style.backgroundColor = "red";
+
+
+
+//     // ^Normal way
+//     // event.target.style.backgroundColor = "red";
+
+
+//   }
+
+
+//   let handleMouseOut = () => {
+//     setActiveStatus(false);
+
+//     // also change the color 
+//     // referance.current.style.backgroundColor = "hotpink";
+//   }
+//   return (
+//     <div>
+//       <button
+//       ref={referance}
+//       onMouseOver={handleClick}
+//       onMouseOut={handleMouseOut}
+//       style={{
+//         backgroundColor: activeStatus ? "red" : "hotpink", // *Conditional styling here
+//         color : "black",
+//         margin : "2rem",
+//         padding : "2rem",
+//         borderRadius : "7px"
+
+//       }}
+//       >Click Me</button>
+//     </div>
+//   )
+// }
+
+// export default App
+
+
+
+
+
+// !Custom hooks in React 
+/**
+ * * i)we have to create the custom hook in react should have the prefix as = useBoolean , useChangeTitle
+ * * ii) we use the custom hooks in react for the function based component to re-use the function based component logic
+ * * iii) and for the class based we use the higher order component to reuse the component logic 
+ * * iv)NOte : if needed you can call another hook inside the custom hook that you are creating if needed  
+ */
+
+
+// import React from 'react'
+// import DocumentTitle1 from './Components/DocumentTitle1'
+// import DocumentTitle2 from './Components/DocumentTitle2'
+// import ClickCounter1 from './Components/ClickCounter1'
+// import ClickCounter2 from './Components/ClickCounter2'
+
+// const App = () => {
+//   return (
+//     <div>
+//       {/* first custom  hook useDocumentTitle() */}
+//       {/* <DocumentTitle1/>
+//       <DocumentTitle2/> */}
+
+//       {/* second custom hook useCounter() */}
+//       <ClickCounter1/>
+//       <ClickCounter2/>
+//     </div>
+//   )
+// }
+
+// export default App
+
+
+
+
+
+
+
+
+
+
+
+
+
+// !How to recognize the speech in react 
+// ^means voice to text conversion how to do it 
+
+import React, { useState } from 'react'
 
 const App = () => {
-  let referance = useRef();
+  // ^lets take the one state to store the text that user will speak 
 
-  let [activeStatus , setActiveStatus] = useState(false);
+  let [text , setText] = useState("......");
 
   let handleClick = (event) => {
 
-    // ^also change the state value 
-    setActiveStatus(true);
+    // I have to set tha value of the below object that is there in the window class
 
-    // ^using the referance of that react element that we have stored using the useRef() hook
+    window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-    // referance.current.style.backgroundColor = "red";
+    // now I have to create the one object so what the user will speak it should get stored 
+
+    let recognition = new window.SpeechRecognition();
+
+    recognition.start();
+
+    recognition.addEventListener("result" , (event) => {
+
+      console.log(event);
+      console.log(event.results[0][0].transcript);
+      
+      
+      setText(event.results[0][0].transcript);
+    });
 
 
 
-    // ^Normal way
-    // event.target.style.backgroundColor = "red";
+    
+        // *Handle errors
+        recognition.addEventListener('error', (event) => {
+          console.error('Speech Recognition Error:', event.error);
+          setText('Error occurred: ' + event.error);
+        });
 
 
   }
 
 
-  let handleMouseOut = () => {
-    setActiveStatus(false);
 
-    // also change the color 
-    // referance.current.style.backgroundColor = "hotpink";
-  }
+
+
+
+
   return (
     <div>
-      <button
-      ref={referance}
-      onMouseOver={handleClick}
-      onMouseOut={handleMouseOut}
-      style={{
-        backgroundColor: activeStatus ? "red" : "hotpink", // *Conditional styling here
-        color : "black",
-        margin : "2rem",
-        padding : "2rem",
-        borderRadius : "7px"
-
-      }}
-      >Click Me</button>
+      <h1>{text}</h1>
+      <button onClick={handleClick}>Listen</button>
+      
     </div>
   )
 }
 
 export default App
+
+
+
+// import React from 'react'
+
+// const App = () => {
+//   return (
+//     <div>App</div>
+//   )
+// }
+
+// export default App
