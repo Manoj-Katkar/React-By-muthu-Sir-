@@ -1,6 +1,6 @@
 
 
-// !controlled and un-controlled components forms 
+// !============================================controlled and un-controlled components forms =======================================
 /**
   * In React, **controlled forms** and **uncontrolled forms** refer to two different ways of managing form inputs and their values.
 
@@ -61,30 +61,86 @@ In an **uncontrolled form**, the form elements manage their own state internally
 
 
 
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import ControlledForm from './Components/ControlledForm';
-import UncontrolledForm from './Components/UncontrolledForm';
-// import './App.css'
+// import { useState } from 'react'
+// import reactLogo from './assets/react.svg'
+// import viteLogo from '/vite.svg'
+// import ControlledForm from './Components/ControlledForm';
+// import UncontrolledForm from './Components/UncontrolledForm';
+// // import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+// function App() {
+//   const [count, setCount] = useState(0)
 
-  document.title = "React CRUD App";
+//   document.title = "React CRUD App";
 
 
 
+//   return (
+//     <>
+//         {/* <ControlledForm/> */}
+//         <UncontrolledForm/>
+
+//     </>
+//   )
+// }
+
+// export default App
+
+
+// learned about the ControlledForm where data stored in react state and also learned UncontrolledForm where data stored in the DOM access it using the useRef with element referance using .current property  most we refer the controlled component forms because data get stored in the react state 
+
+
+
+
+
+
+
+
+// !===========================================CRUD Operations In React ======================================
+
+
+
+
+// !get the data from the this link : https://jsonplaceholder.typicode.com/users ()
+// ^for the auto import is not working use = ctrl + space it will give the suggession 
+
+/**
+ * steps to follow 
+ **install the below package 
+          i)npx json-server --watch data.json  (//*it will get open in the differant localhost having the differ)
+                i)for installing the json server make the execution policy 
+                    1)Get-ExecutionPolicy   
+                    2)if it is Remote-Signed then do not modify 
+                    3)else I have to modify using Set-ExecutionPolicy RemoteSigned
+          ii)npm install axios
+          iii)npm install react-router-dom
+
+
+          // !Now I have to start the json server 
+          command : npx json-server --watch data.json  
+ */
+
+
+import React from 'react'
+import { Route, Routes } from 'react-router-dom'
+import Home from './Components/Home'
+import Create from './Components/Create'
+import Update from './Components/Update'
+import Read from './Components/Read'
+import Delete from './Components/Delete'
+
+const App = () => {
   return (
-    <>
-        {/* <ControlledForm/> */}
-        <UncontrolledForm/>
 
-    </>
+    <Routes>
+      <Route path='/' element={<Home/>} />
+      <Route path='/create' element={<Create/>} />
+      <Route path='/read/:userId' element={<Read/>} />
+      <Route path='/update/:userId' element={<Update/>} />
+      <Route path='/delete/:userId' element={<Delete/>} />
+    </Routes>
+
   )
 }
 
 export default App
-
-
-// learned about the ControlledForm where data stored in react state and also learned UncontrolledForm where data stored in the DOM access it using the useRef with element referance using .current property  most we refer the controlled component forms because data get stored in the react state 
