@@ -16,21 +16,49 @@ const Home = () => {
             console.log(response);
             
 
-            setData(response.data);
+            setData(response.data);  //*because inside the data key of the axios object our orginal data will be there 
+            
         })
         .catch((error) => {
             console.log(error);
             
         })
-    } , [])
+    } , []);
+
+
+
+
+    // !lets implement the handleDelete 
+
+    let handleDelete = (id) => {
+
+      //first confirm it from the user that really want to delete that record 
+      let confirmResult = window.confirm("Are you sure? Do you want to delete?");
+
+      if(confirmResult){
+        //means the value is true then I have to delete that record 
+        axios.delete(`http://localhost:3000/users/${id}`)
+        .then((response) => {
+          console.log(response.data);
+
+          //also page should reload 
+          window.location.reload();
+          
+        })
+        .catch((error) => {
+          console.log(error);
+          
+        })
+      }
+    }
 
 
 
   return (
-    <section>
-      <article>
-        <Link to={"/create"}>Add++</Link>
-        <table>
+    <section className="container">
+      <article className="table-container">
+        <Link to={"/create"} className="add-button">Add++</Link>
+        <table className="user-table">
           <thead>
             <tr>
               <th>ID</th>
@@ -51,10 +79,12 @@ const Home = () => {
                   <td>{name}</td>
                   <td>{email}</td>
                   <td>{phone}</td>
-                  <td className="display">
-                    <Link to={"/read/:userId"}>Read</Link>
-                    <Link to={"/update/:userId"}>Update</Link>
-                    <Link to={"/delete/:userId"}>Delete</Link>
+                  <td className="actions">
+                    <Link to={`/read/${id}`}>Read</Link>
+                    <Link to={`/update/${id}`}>Update</Link>
+                    <Link onClick={() => {
+                      handleDelete(id);
+                    }}>Delete</Link>
                   </td>
                 </tr>
               );

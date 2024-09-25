@@ -117,8 +117,17 @@ In an **uncontrolled form**, the form elements manage their own state internally
 
 
           // !Now I have to start the json server 
-          command : npx json-server --watch data.json  
+          command : npx json-server --watch data.json    (data.json this file I have created locally that will track the all data CRUD operations locally)
  */
+
+
+/**
+ * *axios methods : (//!Important for the handling with the data using the data.json file)
+ *            1)to read the data : axios.get("url")
+ *            2)to add the data : axios.post("url")
+ *            3)to delete the data : axios.delete("url with id to uniquelly delete that record")
+ *            4)to update the data : axios.put(http://localhost:3000/users/${userId}, valueThatYouWantToUpdateWithCorrespondingUrlUniqueRecord)
+ *  */          
 
 
 import React from 'react'
@@ -127,7 +136,7 @@ import Home from './Components/Home'
 import Create from './Components/Create'
 import Update from './Components/Update'
 import Read from './Components/Read'
-import Delete from './Components/Delete'
+
 
 const App = () => {
   return (
@@ -137,7 +146,7 @@ const App = () => {
       <Route path='/create' element={<Create/>} />
       <Route path='/read/:userId' element={<Read/>} />
       <Route path='/update/:userId' element={<Update/>} />
-      <Route path='/delete/:userId' element={<Delete/>} />
+      
     </Routes>
 
   )

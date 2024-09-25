@@ -28,7 +28,7 @@ const Create = () => {
         
         navigate("/"); //*means I have successfullt added the data then I have to navigate the user to the home component 
 
-        window.location.reload();  //and page should also reload to see the updated data 
+        window.location.reload();  //^and page should also reload to see the updated data 
       },
       (e) => e
     );
@@ -36,7 +36,7 @@ const Create = () => {
 
 
   let handleChange = (e) => {
-    let { name, value } = e.target;
+    let { name, value } = e.target;   //here doing the object destructuring so from that targeted element I can get name and actual value that user have typed 
 
     // ^here doing the object destructuring and whatever the new data is user typing under that name it is getting added 
 

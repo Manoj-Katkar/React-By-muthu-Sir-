@@ -1,31 +1,8 @@
 {
   "users": [
     {
-      "id": "1",
-      "name": "Leanne Graham",
-      "username": "Bret",
-      "email": "Sincere@april.biz",
-      "address": {
-        "street": "Kulas Light",
-        "suite": "Apt. 556",
-        "city": "Gwenborough",
-        "zipcode": "92998-3874",
-        "geo": {
-          "lat": "-37.3159",
-          "lng": "81.1496"
-        }
-      },
-      "phone": "1-770-736-8031 x56442",
-      "website": "hildegard.org",
-      "company": {
-        "name": "Romaguera-Crona",
-        "catchPhrase": "Multi-layered client-server neural-net",
-        "bs": "harness real-time e-markets"
-      }
-    },
-    {
       "id": "2",
-      "name": "Ervin Howell",
+      "name": "Dhoni MS ",
       "username": "Antonette",
       "email": "Shanna@melissa.tv",
       "address": {
@@ -38,7 +15,7 @@
           "lng": "-34.4618"
         }
       },
-      "phone": "010-692-6593 x09125",
+      "phone": "9785456325",
       "website": "anastasia.net",
       "company": {
         "name": "Deckow-Crist",
@@ -48,9 +25,9 @@
     },
     {
       "id": "3",
-      "name": "Clementine Bauch",
+      "name": "Manya Bhai",
       "username": "Samantha",
-      "email": "Nathan@yesenia.net",
+      "email": "Manya@gmail.com",
       "address": {
         "street": "Douglas Extension",
         "suite": "Suite 847",
@@ -61,7 +38,7 @@
           "lng": "-47.0653"
         }
       },
-      "phone": "1-463-123-4447",
+      "phone": "9702039096",
       "website": "ramiro.info",
       "company": {
         "name": "Romaguera-Jacobson",
@@ -113,29 +90,6 @@
         "name": "Keebler LLC",
         "catchPhrase": "User-centric fault-tolerant solution",
         "bs": "revolutionize end-to-end systems"
-      }
-    },
-    {
-      "id": "6",
-      "name": "Mrs. Dennis Schulist",
-      "username": "Leopoldo_Corkery",
-      "email": "Karley_Dach@jasper.info",
-      "address": {
-        "street": "Norberto Crossing",
-        "suite": "Apt. 950",
-        "city": "South Christy",
-        "zipcode": "23505-1337",
-        "geo": {
-          "lat": "-71.4197",
-          "lng": "71.7478"
-        }
-      },
-      "phone": "1-477-935-8478 x6430",
-      "website": "ola.org",
-      "company": {
-        "name": "Considine-Lockman",
-        "catchPhrase": "Synchronised bottom-line interface",
-        "bs": "e-enable innovative applications"
       }
     },
     {
@@ -231,22 +185,10 @@
       }
     },
     {
-      "id": "12",
-      "name": "Manoj ",
-      "email": "satyam@gmail.com",
-      "phone": "9702039096"
-    },
-    {
       "id": "48",
       "name": "Shanaya",
       "email": "shanu@gnail.com",
       "phone": "9702039985"
-    },
-    {
-      "id": "87",
-      "name": "sagar",
-      "email": "sagar@gmail.com",
-      "phone": "9702039984"
     }
   ]
 }
