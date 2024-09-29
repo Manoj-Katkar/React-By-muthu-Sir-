@@ -1,0 +1,129 @@
+
+
+React is JS library for creating UI (user interface)
+
+It is faster in performance
+it is component based architecture
+It is mostly used to create SPA (Single page Web-application)
+Facebook created the javascript library React first in 2011
+then it is made open source
+you can write React code JS, TypeScript
+it is component based architecture
+components are the reusable bits of code, write one use everywhere
+
+difference between SPA || MPA
+1> reloading will not happen with each click || Reload will happen
+2>  In SPA performance is better comparatively
+3>React Angular Viu || JQuery
+4> old requests are stored in browser cache || old requests are not stored, if same request is repeated then it will once again sent to the server.
+
+##### WHAT IS THE DIFFERENCE BETWEEN LIBRARY AND FRAMEWORK ######
+
+library :
+        set of software program
+        install other libraries and use
+
+
+Framework:
+        set of libraries
+
+
+#### WHY REACT IS SO FAST #####
+
+react follows one concept called as virtual.dom
+
+when you create any website using html css,
+it will create one dom tree, so if you add any new element,
+it will create the dom tree from start once again
+
+$$ Virtual Dom $$
+    it is a light weight representation of real dom
+    that allows react to manage the changes by neglecting the direct manipulation on the real dom
+%%% reconciliation in react
+    reconciliation is Reacts way of diffing the virtual DOM tree with the updated virtual DOM to determine the most  efficient way to update the real DOM
+    This process allow react to apply only the necessary changes to the dom, avoiding the costly operation of updating the entire dom
+ diffing algorithm ---> root element
+
+The diffing Algorithm
+    when diffing two trees, React first compares the two root elements
+    the behavior is different depending on the type of the root elements
+
+WHAT IS THE DIFFERENCE BETWEEN NPM AND NPX
+        NPM is a package management that is used to install, uninstall,
+        and update Javascript packages on your workstation, whereas NPX(node pacakage execute) is a
+        package executer that is used to directly execute Javascript packages without installing them.
+
+        to install a package
+        npm install -g package_name
+
+        to uninstall a package
+        npm uninstall package_name -g
+
+#### IMP ###
+create-react-app is a package in npm
+Cannot create a project named "MY APP" because of npm naming restrictions:
+
+  * name can no longer contain capital letters
+
+Please choose a different project name.
+##################################################
+
+node modules : predefined code/dependencies
+                it is a place where all the dependencies packages are stored,
+                that are used to build and run react project
+
+public : every static files will be there
+        index.html --> first file which will render on the browser when we access the webpage.
+        the public folder contains the static files such as index.html,js fils, images,asserts,
+        which you don't want to be processed by the webpack
+
+src : Source --> every source code should be there
+                it is a place where all jsx files, css files and other code related to the application
+                app.jsx:
+                        it is the root component of the application
+
+package.json --> meta data about the project
+                it is a jsn file that is present in the root directory of your react project
+                it holds the important info or meta data, about your project.
+
+CreateRoot :
+                it is used to set the root element for the web page this method is present inside the ReactDOM/client pacakage
+it will take one argument i.e the reference of the root element
+
+
+Render in React:
+                it is used to make one element as a child of root element
+
+react Fragment :
+                It is used to list group of child element without adding any extra nodes to a DOM
+
+####### CREATING ELEMENT IN REACT ######
+two ways :
+        1>createElement :
+                        // let div = React.createElement( this method is used to create the react element in js,
+                        //~ it takes three argument
+                        //~ 1> element name
+                        //~ 2> object or null (it is used to attributes)
+                        //~ 3> content or Children
+        2> JSX :
+                        // ! jsx stands for JavaScript XML
+                        // ! jsx allows to write html code in react
+                        // ! jsx allows to write html code in react and place it in the dom tree without any create element or append child
+                        // ! jsx converts html tags into react element
+
+                        //^Rules of JSX
+                        // ^ Rule 1 : if you have multiple element present, it should wrapped within() i.e paranthesis
+                        // ^ Rule 2 : each nd every tag must be closed
+                        // ^ Rule 3 : One top level element, if two adjacent element is present,
+                        // ^          (sibling tags)mandatory should be wrapped within one parent tag.
+                        // ^        : for rule 3 you can use empty tag <>...</>, it is called "fragment"
+##### Component ####
+components are independent and reusable bits of code. They serve the same purpose as Javascript function functions, 
+but work in isolation and return jsx
+
+there are two types of component:
+        1. Class based component (stateful)
+        2. Functional Based Component (stateless)
+
+## state ##
+it is an object that is used to store the data or the value of the component
