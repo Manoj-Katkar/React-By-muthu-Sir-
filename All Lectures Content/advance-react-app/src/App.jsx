@@ -28,7 +28,7 @@
 //   return (
 //     <>
 //       <NavBar count={{count , setCount}} data={{data , setData}}/>
-
+        
 //     </>
 //   )
 // }
@@ -79,14 +79,37 @@ import React from 'react'
 import UserContextProvider from './Context/UserContextProvider'
 import Login from './Components/Login'
 import Profile from './Components/Profile'
+import { Route, Routes } from 'react-router-dom'
+import Home from './Components/Home'
+import Create from './Components/Create';
+import Read from './Components/Read';
+import Update from './Components/Update';
 
 const App = () => {
-  return (
-    <UserContextProvider>
-      <h1>Context API</h1>
-      <Login/>
-      <Profile/>
-    </UserContextProvider>
+  // return (
+  //   <UserContextProvider>
+  //     <h1>Context API</h1>
+  //     <Login/>
+  //     <Profile/>
+  //   </UserContextProvider>
+  // )
+
+
+
+
+  return(
+    <Routes>
+      
+      {/* <Parent /> */}
+
+      {/* //!CRUD Opeartions In react */}
+
+      <Route path='/' element={<Home/>}/>
+      <Route path='/create' element={<Create/>}/>
+      <Route path='/read/:userId' element={<Read/>}/>
+      <Route path='/update/:userId' element={<Update/>}/>
+
+    </Routes>
   )
 }
 
